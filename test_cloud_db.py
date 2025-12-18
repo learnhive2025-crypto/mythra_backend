@@ -12,12 +12,12 @@ try:
     client = MongoClient(
         MONGO_URL,
         tls=True,
-        tlsAllowInvalidCertificates=True,
+        tlsCAFile=certifi.where(),
         serverSelectionTimeoutMS=5000
     )
     # The command execution triggers the connection
     info = client.server_info()
-    print("✅ SUCCESS! Connected to Cloud MongoDB.")
+    print(f"SUCCESS! Connected to Cloud MongoDB.")
     print(f"Server Version: {info.get('version')}")
 except Exception as e:
-    print(f"❌ Connection Failed: {e}")
+    print(f"Connection Failed: {e}")
